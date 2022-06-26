@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Sub from './Sub';
 
 // 0. React 엔진 : 데이터 변경 감지해서 ui 그리기
 // 1. 실행 -> index.html : (Single Page Application, SPA)
@@ -14,29 +16,34 @@ import './App.css';
 //    - 외부 파일
 //    - 라이브러리(부트스트랩, componenet-styled)
 
-let a = 10; // 변수
-const b = 20; // 상수
-
 function App() {
-  /*
-  let c;
-  console.log(c); // undefined
-  const myStyle = {
-    color: 'red',
+  console.log('App 실횅');
+
+  const [num, setNum] = useState(5);
+
+  let sample = [
+    { id: 1, name: '홍길동' },
+    { id: 2, name: '임꺽정' },
+    { id: 3, name: '장보고' },
+    { id: 4, name: '이순신' },
+  ];
+
+  const [users, setUsers] = useState(sample); // 레퍼런스 변경돼야 동작
+
+  const download = () => {
+    setUsers([...sample, { id: num, name: '조자룡' }]);
+    setNum(num + 1);
   };
-  */
-  let list = [1, 2, 3];
+
+  // 렌더링 시점 = 상태값 변경
   return (
-    /*
-    <div>
-      <div style={myStyle}>{a === 10 ? '10' : '10이 아님'}</div>
-      <div>div 태그 {b === 20 && '20입니다.'}</div>
-      <h1 className="myCss">h1 태그</h1>
-    </div>*/
     <div>
       <div>
-        {list.map((n) => (
-          <h1>{n}</h1>
+        <button onClick={download}>다운로드</button>
+        {users.map((u) => (
+          <h1>
+            {u.id}, {u.name}
+          </h1>
         ))}
       </div>
     </div>
