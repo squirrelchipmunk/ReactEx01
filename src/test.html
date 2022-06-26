@@ -48,6 +48,30 @@
         const c5 = a5.map((n)=>n*5); // spread는 불가능
         console.log(c5);
 
+
+        console.log(`6. ================ 수정하기`);
+        const a6 = {id:1, name:"홍길동"};
+        const b6 = {...a6, name:"임꺽정"} //{id:1, name:"홍길동", name:"임꺽정"} : 뒤에 있는 속성이 덮어쓰기 됨
+        console.log(b6);
+        const data = {name:"임꺽정"};
+        const c6 = {...a6, ...data};
+        console.log(c6);
+
+        const users = [
+            {id:1, name:"고양이", phone:"1111"},
+            {id:2, name:"강아지", phone:"2222"},
+            {id:3, name:"다람쥐", phone:"3333"}
+        ];
+
+        const updateUserDto = {
+            id:2, name:"토끼"
+        };
+
+        // user[1].name = updateUserDto.name; -> 가능은 하지만 얕은 복사이므로 최적화 x
+
+        const users2 = users.map( o=> o.id === updateUserDto.id ? {...o, ...updateUserDto}:o );
+        console.log(users2);
+
         
     </script>
   </body>
