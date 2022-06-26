@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    <title>React App</title>
+  </head>
+  <body>
+    <script>
+        // concat, filter, map, slice, spread(전개)
+
+        console.log('1. ================ 스프레드 연산자');
+        const a = [1,2,3];
+        const b = [...a]; // 깊은 복사 (데이터 복사)
+        b.push(4);
+        console.log(`a의 값은 : ${a}`);
+        console.log(`b의 값은 : ${b}`);
+
+        console.log(`2. ================ 새로운 배열에 추가`); // add
+        const a2 = [1,2,3];
+        const b2 = a2.concat(4);
+        console.log(`a의 값은 : ${a2}`);
+        console.log(`b의 값은 : ${b2}`);
+        const c2 = [0,...a, 4]; // == a.concat(4)
+        console.log(`c의 값은 : ${c2}`);
+
+        console.log(`3. ================ 걸러내기`); // delete
+        const a3 = [1,2,3];
+        const b3 = a3.filter((n)=> {return n != 1}); // bool return : true 걸러내기
+        console.log(b3);
+
+        console.log(`4. ================ 잘라내기`);
+        const a4 = [1,2,3];
+        const b4 = a4.slice(0,2)
+        console.log(b4); // [1,2]
+        const c4 = [...a4.slice(0,2),4, ...a4.slice(2,3)];
+        console.log(c4); // [[1,2]]
+
+        console.log(`5. ================ 반복하기`);
+        const a5 = [1,2,3];
+        /*for(let i=0; i<a5.length;i++){
+            console.log(a5[i]);
+        }*/
+        a5.forEach( (n)=>{console.log(n)} );
+        a5.forEach( (n)=>console.log(n) ); // 리턴이 불가능
+        const b5 = a5.map((n)=>n); // = a5.map((n)=>{return n}) = [...a5]
+        console.log(b5);
+        const c5 = a5.map((n)=>n*5); // spread는 불가능
+        console.log(c5);
+
+        
+    </script>
+  </body>
+</html>

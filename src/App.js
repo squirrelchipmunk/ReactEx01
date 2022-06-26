@@ -18,17 +18,27 @@ let a = 10; // 변수
 const b = 20; // 상수
 
 function App() {
+  /*
   let c;
   console.log(c); // undefined
   const myStyle = {
     color: 'red',
   };
-
+  */
+  let list = [1, 2, 3];
   return (
+    /*
     <div>
       <div style={myStyle}>{a === 10 ? '10' : '10이 아님'}</div>
       <div>div 태그 {b === 20 && '20입니다.'}</div>
       <h1 className="myCss">h1 태그</h1>
+    </div>*/
+    <div>
+      <div>
+        {list.map((n) => (
+          <h1>{n}</h1>
+        ))}
+      </div>
     </div>
   ); // 여러 줄이면 괄호 필요
 }
