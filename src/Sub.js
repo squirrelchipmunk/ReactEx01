@@ -1,5 +1,6 @@
 import React from 'react';
 
+let num = 10;
 const sub = () => {
   // 함수 제공
 
@@ -10,4 +11,5 @@ const sub = () => {
   );
 };
 
+export { num }; //
 export default sub;

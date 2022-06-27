@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
-import Sub from './Sub';
+import { useEffect, useState } from 'react';
 
 // 0. React 엔진 : 데이터 변경 감지해서 ui 그리기
 // 1. 실행 -> index.html : (Single Page Application, SPA)
@@ -17,37 +16,43 @@ import Sub from './Sub';
 //    - 라이브러리(부트스트랩, componenet-styled)
 
 function App() {
-  console.log('App 실횅');
-
-  const [num, setNum] = useState(5);
-
-  let sample = [
-    { id: 1, name: '홍길동' },
-    { id: 2, name: '임꺽정' },
-    { id: 3, name: '장보고' },
-    { id: 4, name: '이순신' },
-  ];
-
-  const [users, setUsers] = useState(sample); // 레퍼런스 변경돼야 동작
+  const [data, setData] = useState(0);
+  const [search, setSearch] = useState(0);
 
   const download = () => {
-    setUsers([...sample, { id: num, name: '조자룡' }]);
-    setNum(num + 1);
+    //다운로드 받고(통신)
+    let downloadData = 5;
+    setData(downloadData);
   };
 
-  // 렌더링 시점 = 상태값 변경
+  // 실행 시점
+  // 1. App 그림이 최초 그려질 때
+  // 2. 상태 변수가 변경될 때 -> 의존하지 않으면 실행되지 않는다. (dependencyList)
+  // 3. 의존 리스트 관리 가능
+  useEffect(() => {
+    console.log('useEffect 실행됨');
+    download();
+  }, [search]);
+
   return (
     <div>
-      <div>
-        <button onClick={download}>다운로드</button>
-        {users.map((u) => (
-          <h1>
-            {u.id}, {u.name}
-          </h1>
-        ))}
-      </div>
+      <button
+        onClick={() => {
+          setSearch(2);
+        }}
+      >
+        검색하기
+      </button>
+      <h1>데이터 : {data}</h1>
+      <button
+        onClick={() => {
+          setData(data + 1);
+        }}
+      >
+        더하기
+      </button>
     </div>
-  ); // 여러 줄이면 괄호 필요
+  );
 }
 
 export default App;
