@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // 0. React 엔진 : 데이터 변경 감지해서 ui 그리기
 // 1. 실행 -> index.html : (Single Page Application, SPA)
@@ -16,41 +16,47 @@ import { useEffect, useState } from 'react';
 //    - 라이브러리(부트스트랩, componenet-styled)
 
 function App() {
-  const [data, setData] = useState(0);
-  const [search, setSearch] = useState(0);
+  //useMemo -> 메모라이제이션(기억)
 
-  const download = () => {
-    //다운로드 받고(통신)
-    let downloadData = 5;
-    setData(downloadData);
+  const [list, setList] = useState([1, 2, 3, 4]);
+  const [str, setStr] = useState('합계');
+
+  const getAddResult = () => {
+    let sum = 0;
+    list.forEach((i) => (sum = sum + i));
+    console.log('sum 실행 됨 ', sum);
+    return sum;
   };
 
-  // 실행 시점
-  // 1. App 그림이 최초 그려질 때
-  // 2. 상태 변수가 변경될 때 -> 의존하지 않으면 실행되지 않는다. (dependencyList)
-  // 3. 의존 리스트 관리 가능
-  useEffect(() => {
-    console.log('useEffect 실행됨');
-    download();
-  }, [search]);
+  // 문자 변경하기 버튼 클릭 시 getAddResult 막는 방법
+  const addResult = useMemo(() => getAddResult(), [list]);
+  // getAddResult()는 list가 변경될 때만 다시 실행
 
   return (
     <div>
       <button
         onClick={() => {
-          setSearch(2);
+          setStr('안녕');
         }}
       >
-        검색하기
+        문자 변경하기
       </button>
-      <h1>데이터 : {data}</h1>
+
       <button
         onClick={() => {
-          setData(data + 1);
+          setList([...list, 5]);
         }}
       >
-        더하기
+        리스트에 값 추가하기
       </button>
+      <div>
+        {list.map((i) => (
+          <h1>{i}</h1>
+        ))}
+      </div>
+      <div>
+        {str} : {addResult}
+      </div>
     </div>
   );
 }
