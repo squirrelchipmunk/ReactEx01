@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import { createRef, useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Login from './components/login/Login';
+import LoginPage from './pages/LoginPage';
 
 // 0. React 엔진 : 데이터 변경 감지해서 ui 그리기
 // 1. 실행 -> index.html : (Single Page Application, SPA)
@@ -15,34 +19,12 @@ import { createRef, useMemo, useRef, useState } from 'react';
 //    - 외부 파일
 //    - 라이브러리(부트스트랩, componenet-styled)
 
+//styled components import해서 사용하기
+
 function App() {
-  //useRef(디자인)
-  // dom 변경 기능
-
-  const myRef = useRef(null); // 1개만 적용됨
-
-  const [list, setList] = useState([
-    { id: 1, name: '길동' },
-    { id: 2, name: '꺽정' },
-  ]);
-
-  const myRefs = Array.from({ length: list.length }).map(() => createRef()); // 배열로 useRef 만들기
-
   return (
     <div>
-      <button
-        onClick={() => {
-          myRef.current.style.backgroundColor = 'red';
-          myRefs[0].current.style.backgroundColor = 'red';
-          myRefs[1].current.style.backgroundColor = 'red';
-        }}
-      >
-        색 변경
-      </button>
-      <div ref={myRef}> 박스 </div>
-      {list.map((user, index) => (
-        <h1 ref={myRefs[index]}>{user.name}</h1>
-      ))}
+      <LoginPage />
     </div>
   );
 }
