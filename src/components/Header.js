@@ -5,19 +5,19 @@ import styled from 'styled-components';
 
 // 재사용을 위한 컴포넌트 생성
 // styled-componenets 장점 : js+css 관리 편함
-const HeaderList = styled.div`
+const StyledHeaderDiv = styled.div`
   border: 5px solid black;
   height: 300px;
 `;
 
 const Header = () => {
   return (
-    <HeaderList>
+    <StyledHeaderDiv>
       <ul>
         <li>메뉴1</li>
         <li>메뉴2</li>
       </ul>
-    </HeaderList>
+    </StyledHeaderDiv>
   );
 };
 

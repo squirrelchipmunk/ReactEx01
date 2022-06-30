@@ -1,10 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import styled from 'styled-components';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Login from './components/login/Login';
-import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
 
 // 0. React 엔진 : 데이터 변경 감지해서 ui 그리기
 // 1. 실행 -> index.html : (Single Page Application, SPA)
@@ -24,7 +20,7 @@ import LoginPage from './pages/LoginPage';
 function App() {
   return (
     <div>
-      <LoginPage />
+      <HomePage />
     </div>
   );
 }
