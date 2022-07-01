@@ -1,6 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import HomePage from './pages/HomePage';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // 0. React 엔진 : 데이터 변경 감지해서 ui 그리기
 // 1. 실행 -> index.html : (Single Page Application, SPA)
@@ -15,12 +20,16 @@ import HomePage from './pages/HomePage';
 //    - 외부 파일
 //    - 라이브러리(부트스트랩, componenet-styled)
 
-//styled components import해서 사용하기
-
+// 요청 주소에 따라 Route 부분의 객체만 변경됨
 function App() {
   return (
     <div>
-      <HomePage />
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login/:id" element={<LoginPage />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

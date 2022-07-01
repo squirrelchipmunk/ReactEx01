@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from 'react-bootstrap';
 
 const StyledDeleteButton = styled.button`
   color: ${(props) => (props.user.username === 'gom' ? 'blue' : 'red')};
@@ -21,6 +22,7 @@ const Home = (props) => {
   // setBoards도 부모의 함수이기 때문에 props로 받아야 함
   return (
     <div>
+      <Button variant="primary">Primary</Button>
       <StyledAddButton user={user}>더하기</StyledAddButton>
       <StyledDeleteButton user={user} onClick={() => setBoards([])}>
         boards 삭제

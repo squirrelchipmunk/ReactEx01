@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
 import Home from '../components/home/Home';
 
 const HomePage = () => {
@@ -26,7 +24,6 @@ const HomePage = () => {
   // 자식에게 props passing
   return (
     <div>
-      <Header />
       <Home
         boards={boards}
         id={1}
@@ -35,7 +32,6 @@ const HomePage = () => {
         setNumber={setNumber}
         user={user}
       />
-      <Footer />
     </div>
   );
 };
